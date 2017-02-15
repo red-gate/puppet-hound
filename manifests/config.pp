@@ -50,7 +50,7 @@ class hound::config {
     # runs hound will be restarted.
     file { "${hound::tmp_dir}/houndd_restart":
       ensure  => present,
-      content => 0,
+      content => '0',
       owner   => $user,
       group   => $group,
       mode    => '0660',
