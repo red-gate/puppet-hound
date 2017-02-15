@@ -44,7 +44,11 @@ class hound::sanity {
 
   # Ensure proper init type is being used
   if $::operatingsystem == 'Ubuntu' {
-    $supported_init = 'sysv'
+    if versioncmp($::operatingsystemrelease, '15') < 0 {
+      $supported_init = 'sysv'
+    } else {
+      $supported_init  = 'systemd'
+    }
   } elsif $::operatingsystem =~ /Scientific|CentOS|RedHat|OracleLinux/ {
     if versioncmp($::operatingsystemrelease, '7.0') < 0 {
       $supported_init = 'sysv'
